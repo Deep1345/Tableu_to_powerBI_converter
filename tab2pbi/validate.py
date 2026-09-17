@@ -144,6 +144,20 @@ def _validate_tmdl_files(output_dir: Path, result: ValidationResult):
                             )
                             break
 
+            # Check object declaration headers
+            if tmdl_file.name == "database.tmdl":
+                if not content.strip().startswith("database"):
+                    result.add_error(
+                        f"database.tmdl must start with 'database <name>', got: '{lines[0]}'"
+                    )
+                if "compatibilityLevel:" not in content:
+                    result.add_error("database.tmdl missing 'compatibilityLevel:'")
+            elif tmdl_file.name == "model.tmdl":
+                if not content.strip().startswith("model"):
+                    result.add_error(
+                        f"model.tmdl must start with 'model <name>', got: '{lines[0]}'"
+                    )
+
             result.add_pass(f"TMDL valid: {tmdl_file.name}")
 
         except Exception as e:

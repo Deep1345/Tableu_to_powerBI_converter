@@ -85,7 +85,7 @@ def write_semantic_model(
     _write_pbism(sm_dir)
 
     # Write database.tmdl
-    _write_database_tmdl(def_dir)
+    _write_database_tmdl(def_dir, name)
 
     # Collect all tables and their columns
     tables_info = _collect_tables(ds, table_name, data_paths)
@@ -133,10 +133,12 @@ def _write_pbism(sm_dir: Path):
     )
 
 
-def _write_database_tmdl(def_dir: Path):
+def _write_database_tmdl(def_dir: Path, name: str = "Database"):
     """Write definition/database.tmdl file."""
+    quoted = tmdl_quote_name(name) if name else "Database"
     content = (
-        "compatibilityLevel: 1567\n"
+        f"database {quoted}\n"
+        "\tcompatibilityLevel: 1567\n"
     )
     (def_dir / "database.tmdl").write_text(content, encoding="utf-8")
 
