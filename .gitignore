@@ -18,5 +18,5 @@ htmlcov/
 Thumbs.db
 
 # Output artifacts
-output_powerbi.zip
+*.zip
 output/
