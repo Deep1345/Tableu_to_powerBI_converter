@@ -101,3 +101,11 @@ def test_write_semantic_model(tmp_path: Path):
         if line.startswith(" "):
             # TMDL strictly requires tab indentation
             pytest.fail(f"TMDL file contains leading space instead of tab: {line}")
+
+    # Verify database.tmdl has proper declaration and properties
+    db_tmdl = (sm_dir / "definition" / "database.tmdl").read_text(encoding="utf-8")
+    db_lines = db_tmdl.strip().splitlines()
+    assert db_lines[0].startswith("database "), f"First line must be database declaration: {db_lines[0]}"
+    assert "\tcompatibilityLevel: 1567" in db_lines
+    assert "\tcompatibilityMode: powerBI" in db_lines
+    assert "\tlanguage: 1033" in db_lines

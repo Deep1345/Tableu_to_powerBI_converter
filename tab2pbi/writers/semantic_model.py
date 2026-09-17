@@ -125,7 +125,7 @@ def _write_pbism(sm_dir: Path):
     """Write definition.pbism file."""
     content = {
         "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/semanticModel/definitionProperties/1.0.0/schema.json",
-        "version": "4.0",
+        "version": "1.0",
         "settings": {}
     }
     (sm_dir / "definition.pbism").write_text(
@@ -134,11 +134,18 @@ def _write_pbism(sm_dir: Path):
 
 
 def _write_database_tmdl(def_dir: Path, name: str = "Database"):
-    """Write definition/database.tmdl file."""
+    """Write definition/database.tmdl file.
+
+    TMDL requires a database header declaration on line 1, followed by
+    indented properties. compatibilityMode and language are required
+    by Power BI Desktop to successfully load the project.
+    """
     quoted = tmdl_quote_name(name) if name else "Database"
     content = (
         f"database {quoted}\n"
         "\tcompatibilityLevel: 1567\n"
+        "\tcompatibilityMode: powerBI\n"
+        "\tlanguage: 1033\n"
     )
     (def_dir / "database.tmdl").write_text(content, encoding="utf-8")
 
@@ -149,7 +156,6 @@ def _write_model_tmdl(def_dir: Path, table_names: list[str]):
         "model Model",
         "\tculture: en-US",
         "\tdefaultPowerBIDataSourceVersion: powerBI_V3",
-        "",
     ]
 
     for table in table_names:
