@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "5262069b7a53fd86801c",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 1240,
+    "height": 680,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "iris"
+                    }
+                  },
+                  "Property": "Variety"
+                }
+              },
+              "queryRef": "iris.Variety",
+              "nativeQueryRef": "Variety"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "iris"
+                        }
+                      },
+                      "Property": "Petal.Length"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "iris.Petal.Length",
+              "nativeQueryRef": "Petal.Length"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "iris"
+                        }
+                      },
+                      "Property": "Petal.Width"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "iris.Petal.Width",
+              "nativeQueryRef": "Petal.Width"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sheet 1'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

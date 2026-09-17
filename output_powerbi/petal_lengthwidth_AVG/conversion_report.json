@@ -1,0 +1,60 @@
+{
+  "workbook_name": "petal_lengthwidth_AVG",
+  "timestamp": "2026-09-17T14:05:34.419706",
+  "summary": {
+    "datasources": 1,
+    "tables_exported": 1,
+    "total_rows": 150,
+    "calculations_total": 0,
+    "calculations_converted": 0,
+    "calculations_unsupported": 0,
+    "worksheets": 1,
+    "dashboards": 0,
+    "warnings": 0,
+    "unsupported_features": 0
+  },
+  "datasources": [
+    {
+      "name": "iris",
+      "connection_type": "textscan"
+    }
+  ],
+  "tables": [
+    {
+      "name": "iris",
+      "row_count": 150,
+      "csv_path": "output_powerbi/petal_lengthwidth_AVG/data/iris.csv"
+    }
+  ],
+  "calculations": [],
+  "worksheets": [
+    {
+      "name": "Sheet 1",
+      "tableau_mark": "Bar",
+      "pbi_visual_type": "clusteredColumnChart",
+      "projections": {
+        "Category": [
+          {
+            "column": "variety",
+            "aggregation": "None"
+          }
+        ],
+        "Y": [
+          {
+            "column": "petal.length",
+            "aggregation": "Average"
+          },
+          {
+            "column": "petal.width",
+            "aggregation": "Average"
+          }
+        ]
+      },
+      "status": "converted",
+      "warnings": []
+    }
+  ],
+  "dashboards": [],
+  "warnings": [],
+  "unsupported": []
+}
